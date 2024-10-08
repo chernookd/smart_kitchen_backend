@@ -1,0 +1,3625 @@
+openapi: 3.0.3
+info:
+  title: Kitchen Helper
+  version: 1.0.0
+  description: Kitchen Helper
+paths:
+  /api/equipment/get_all_equipment/:
+    get:
+      operationId: api_equipment_get_all_equipment_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Equipment'
+          description: ''
+  /api/equipment/equipment/{id}:
+    get:
+      operationId: api_equipment_equipment_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Equipment'
+          description: ''
+  /api/equipment/create_equipment/:
+    post:
+      operationId: api_equipment_create_equipment_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EquipmentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EquipmentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EquipmentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/EquipmentRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Equipment'
+          description: ''
+  /api/equipment/equipment_by_category/:
+    get:
+      operationId: api_equipment_equipment_by_category_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/equipment/user_equipment/:
+    post:
+      operationId: api_equipment_user_equipment_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserEquipmentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateUserEquipmentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateUserEquipmentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateUserEquipmentRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserEquipment'
+          description: ''
+    get:
+      operationId: api_equipment_user_equipment_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserEquipment'
+          description: ''
+  /api/equipment/user_equipment/{id}/:
+    patch:
+      operationId: api_equipment_user_equipment_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCreateUserEquipmentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCreateUserEquipmentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCreateUserEquipmentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedCreateUserEquipmentRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserEquipment'
+          description: ''
+    get:
+      operationId: api_equipment_user_equipment_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEquipment'
+          description: ''
+    put:
+      operationId: api_equipment_user_equipment_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserEquipmentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateUserEquipmentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateUserEquipmentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateUserEquipmentRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUserEquipment'
+          description: ''
+    delete:
+      operationId: api_equipment_user_equipment_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/equipment/categories/:
+    get:
+      operationId: api_equipment_categories_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetCategory'
+          description: ''
+  /api/equipment/categories/{id}/:
+    get:
+      operationId: api_equipment_categories_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Category.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCategory'
+          description: ''
+  /api/equipment/recipe_equipment/:
+    post:
+      operationId: api_equipment_recipe_equipment_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeEquipmentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecipeEquipmentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecipeEquipmentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RecipeEquipmentRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeEquipment'
+          description: ''
+    get:
+      operationId: api_equipment_recipe_equipment_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecipeEquipment'
+          description: ''
+  /api/equipment/recipe_equipment/{id}/:
+    patch:
+      operationId: api_equipment_recipe_equipment_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipe Equipment.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRecipeEquipmentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRecipeEquipmentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRecipeEquipmentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedRecipeEquipmentRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeEquipment'
+          description: ''
+    get:
+      operationId: api_equipment_recipe_equipment_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipe Equipment.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeEquipment'
+          description: ''
+    put:
+      operationId: api_equipment_recipe_equipment_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipe Equipment.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeEquipmentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecipeEquipmentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecipeEquipmentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RecipeEquipmentRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeEquipment'
+          description: ''
+    delete:
+      operationId: api_equipment_recipe_equipment_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipe Equipment.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/recipes/recipes/:
+    post:
+      operationId: api_recipes_recipes_create
+      description: Create a new recipe. Requires authentication.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRecipeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateRecipeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateRecipeRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateRecipeRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecipe'
+          description: ''
+    get:
+      operationId: api_recipes_recipes_list
+      description: Retrieve a list of recipes. Admins can filter by draft or published
+        status. Regular users can only see published recipes.
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: status
+        schema:
+          type: string
+        description: Filter recipes by status (published -- for usual users, draft|all
+          -- for staff)
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCreateRecipeList'
+          description: ''
+  /api/recipes/recipes/{id}/:
+    patch:
+      operationId: api_recipes_recipes_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipes.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCreateRecipeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCreateRecipeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCreateRecipeRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedCreateRecipeRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecipe'
+          description: ''
+    get:
+      operationId: api_recipes_recipes_retrieve
+      description: Retrieve a specific recipe by ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipes.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecipe'
+          description: ''
+    put:
+      operationId: api_recipes_recipes_update
+      description: Update an existing recipe. Requires authentication.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipes.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRecipeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateRecipeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateRecipeRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateRecipeRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecipe'
+          description: ''
+    delete:
+      operationId: api_recipes_recipes_destroy
+      description: Delete a specific recipe by ID. Requires authentication.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipes.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/recipes/favorite_recipes/:
+    post:
+      operationId: api_recipes_favorite_recipes_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FavoriteRecipeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FavoriteRecipeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FavoriteRecipeRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/FavoriteRecipeRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavoriteRecipe'
+          description: ''
+    get:
+      operationId: api_recipes_favorite_recipes_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FavoriteRecipe'
+          description: ''
+  /api/recipes/favorite_recipes/{id}/:
+    delete:
+      operationId: api_recipes_favorite_recipes_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipes.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+    get:
+      operationId: api_recipes_favorite_recipes_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Recipes.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FavoriteRecipe'
+          description: ''
+  /api/recipes/published_recipes/:
+    get:
+      operationId: api_recipes_published_recipes_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+          description: ''
+  /api/recipes/recipe_history/:
+    get:
+      operationId: api_recipes_recipe_history_list
+      description: displays a list of the most recently viewed recipes by the user
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipe'
+          description: ''
+  /api/recipes/available_recipe/:
+    get:
+      operationId: api_recipes_available_recipe_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/users/register/:
+    post:
+      operationId: api_users_register_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Register'
+          description: ''
+  /api/users/token/:
+    post:
+      operationId: api_users_token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPairRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPairRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPairRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CustomTokenObtainPairRequest'
+        required: true
+      responses:
+        '200':
+          description: No response body
+  /api/users/logout/:
+    post:
+      operationId: api_users_logout_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Logout'
+          description: ''
+  /api/users/token/refresh/:
+    post:
+      operationId: api_users_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/users/token/verify/:
+    post:
+      operationId: api_users_token_verify_create
+      description: |-
+        Takes a token and indicates if it is valid.  This view provides no
+        information about a token's fitness for a particular use.
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenVerifyRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenVerifyRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenVerifyRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/TokenVerifyRequest'
+        required: true
+      responses:
+        '200':
+          description: No response body
+  /api/users/me/:
+    get:
+      operationId: api_users_me_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: api_users_me_update
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: api_users_me_partial_update
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedUserRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/users/change-password/:
+    post:
+      operationId: api_users_change_password_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/users/user_recipes:
+    get:
+      operationId: api_users_user_recipes_retrieve
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRecipes'
+          description: ''
+  /api/users/users/:
+    get:
+      operationId: api_users_users_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+  /api/users/users/{id}/:
+    get:
+      operationId: api_users_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/food/categories/:
+    post:
+      operationId: api_food_categories_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    get:
+      operationId: api_food_categories_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+          description: ''
+  /api/food/categories/{id}/:
+    patch:
+      operationId: api_food_categories_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Category.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedCategoryRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    get:
+      operationId: api_food_categories_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Category.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    put:
+      operationId: api_food_categories_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Category.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CategoryRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+          description: ''
+    delete:
+      operationId: api_food_categories_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Category.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/food/base-ingredients/:
+    post:
+      operationId: api_food_base_ingredients_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseIngredientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BaseIngredientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BaseIngredientRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/BaseIngredientRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseIngredient'
+          description: ''
+    get:
+      operationId: api_food_base_ingredients_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BaseIngredient'
+          description: ''
+  /api/food/base-ingredients/{id}/:
+    patch:
+      operationId: api_food_base_ingredients_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Base ingredient.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedBaseIngredientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedBaseIngredientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedBaseIngredientRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedBaseIngredientRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseIngredient'
+          description: ''
+    get:
+      operationId: api_food_base_ingredients_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Base ingredient.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseIngredient'
+          description: ''
+    put:
+      operationId: api_food_base_ingredients_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Base ingredient.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BaseIngredientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BaseIngredientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BaseIngredientRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/BaseIngredientRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseIngredient'
+          description: ''
+    delete:
+      operationId: api_food_base_ingredients_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Base ingredient.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/food/user-ingredients/:
+    post:
+      operationId: api_food_user_ingredients_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserIngredientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserIngredientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserIngredientRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UserIngredientRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserIngredient'
+          description: ''
+    get:
+      operationId: api_food_user_ingredients_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserIngredient'
+          description: ''
+  /api/food/user-ingredients/{id}/:
+    patch:
+      operationId: api_food_user_ingredients_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User ingredient.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserIngredientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserIngredientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserIngredientRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedUserIngredientRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserIngredient'
+          description: ''
+    get:
+      operationId: api_food_user_ingredients_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User ingredient.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserIngredient'
+          description: ''
+    put:
+      operationId: api_food_user_ingredients_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User ingredient.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserIngredientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserIngredientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserIngredientRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UserIngredientRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserIngredient'
+          description: ''
+    delete:
+      operationId: api_food_user_ingredients_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this User ingredient.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/food/ingredient-selections/:
+    post:
+      operationId: api_food_ingredient_selections_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngredientSelectionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IngredientSelectionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IngredientSelectionRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/IngredientSelectionRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientSelection'
+          description: ''
+    get:
+      operationId: api_food_ingredient_selections_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IngredientSelection'
+          description: ''
+  /api/food/ingredient-selections/{id}/:
+    patch:
+      operationId: api_food_ingredient_selections_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedIngredientSelectionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedIngredientSelectionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedIngredientSelectionRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedIngredientSelectionRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientSelection'
+          description: ''
+    get:
+      operationId: api_food_ingredient_selections_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientSelection'
+          description: ''
+    put:
+      operationId: api_food_ingredient_selections_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngredientSelectionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IngredientSelectionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IngredientSelectionRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/IngredientSelectionRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientSelection'
+          description: ''
+    delete:
+      operationId: api_food_ingredient_selections_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/food/recipe-ingredient/:
+    post:
+      operationId: api_food_recipe_ingredient_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeIngredientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecipeIngredientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecipeIngredientRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RecipeIngredientRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+          description: ''
+    get:
+      operationId: api_food_recipe_ingredient_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecipeIngredient'
+          description: ''
+  /api/food/recipe-ingredient/{id}/:
+    patch:
+      operationId: api_food_recipe_ingredient_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recipe ingredient.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRecipeIngredientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRecipeIngredientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRecipeIngredientRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedRecipeIngredientRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+          description: ''
+    get:
+      operationId: api_food_recipe_ingredient_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recipe ingredient.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+          description: ''
+    put:
+      operationId: api_food_recipe_ingredient_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recipe ingredient.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipeIngredientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecipeIngredientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecipeIngredientRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RecipeIngredientRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+          description: ''
+    delete:
+      operationId: api_food_recipe_ingredient_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this recipe ingredient.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/comments/comments/:
+    post:
+      operationId: api_comments_comments_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+    get:
+      operationId: api_comments_comments_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+          description: ''
+  /api/comments/comments/{id}/:
+    patch:
+      operationId: api_comments_comments_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this comment.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCommentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCommentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCommentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedCommentRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+    get:
+      operationId: api_comments_comments_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this comment.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+    put:
+      operationId: api_comments_comments_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this comment.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: ''
+    delete:
+      operationId: api_comments_comments_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this comment.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/menu/menus/:
+    post:
+      operationId: api_menu_menus_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MenuRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MenuRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/MenuRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+          description: ''
+    get:
+      operationId: api_menu_menus_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Menu'
+          description: ''
+  /api/menu/menus/{id}/:
+    patch:
+      operationId: api_menu_menus_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMenuRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMenuRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMenuRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedMenuRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+          description: ''
+    get:
+      operationId: api_menu_menus_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+          description: ''
+    put:
+      operationId: api_menu_menus_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MenuRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MenuRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MenuRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/MenuRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Menu'
+          description: ''
+    delete:
+      operationId: api_menu_menus_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/menu/meal_groups/:
+    post:
+      operationId: api_menu_meal_groups_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MealGroupRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MealGroupRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MealGroupRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/MealGroupRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealGroup'
+          description: ''
+    get:
+      operationId: api_menu_meal_groups_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MealGroup'
+          description: ''
+  /api/menu/meal_groups/{id}/:
+    patch:
+      operationId: api_menu_meal_groups_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this meal group.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedMealGroupRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedMealGroupRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedMealGroupRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PatchedMealGroupRequest'
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealGroup'
+          description: ''
+    get:
+      operationId: api_menu_meal_groups_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this meal group.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealGroup'
+          description: ''
+    put:
+      operationId: api_menu_meal_groups_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this meal group.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MealGroupRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MealGroupRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MealGroupRequest'
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/MealGroupRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealGroup'
+          description: ''
+    delete:
+      operationId: api_menu_meal_groups_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this meal group.
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+components:
+  schemas:
+    BaseIngredient:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        photo:
+          type: string
+          format: uri
+          nullable: true
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        cat:
+          type: integer
+      required:
+      - cat
+      - id
+      - name
+      - slug
+    BaseIngredientRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type: string
+        photo:
+          type: string
+          format: binary
+          nullable: true
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        cat:
+          type: integer
+      required:
+      - cat
+      - name
+      - slug
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+      required:
+      - id
+      - name
+      - slug
+    CategoryRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+      required:
+      - name
+      - slug
+    ChangePasswordRequest:
+      type: object
+      properties:
+        old_password:
+          type: string
+          minLength: 1
+        new_password:
+          type: string
+          minLength: 1
+        refresh:
+          type: string
+          minLength: 1
+      required:
+      - new_password
+      - old_password
+      - refresh
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        author:
+          type: integer
+        recipe:
+          type: integer
+        rate:
+          allOf:
+          - $ref: '#/components/schemas/RateEnum'
+          minimum: -2147483648
+          maximum: 2147483647
+        title:
+          type: string
+          maxLength: 80
+        body:
+          type: string
+        photo:
+          type: string
+          format: uri
+        time_create:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Created
+        time_update:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Updated
+      required:
+      - author
+      - id
+      - recipe
+      - time_create
+      - time_update
+    CommentRequest:
+      type: object
+      properties:
+        author:
+          type: integer
+        recipe:
+          type: integer
+        rate:
+          allOf:
+          - $ref: '#/components/schemas/RateEnum'
+          minimum: -2147483648
+          maximum: 2147483647
+        title:
+          type: string
+          maxLength: 80
+        body:
+          type: string
+        photo:
+          type: string
+          format: binary
+      required:
+      - author
+      - recipe
+    CreateRecipe:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        photo:
+          type: string
+          format: uri
+          nullable: true
+        content:
+          type: string
+        instructions:
+          type: string
+        cat:
+          type: integer
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingredient'
+        author:
+          type: integer
+          readOnly: true
+          nullable: true
+        is_published:
+          allOf:
+          - $ref: '#/components/schemas/IsPublishedEnum'
+          title: Pub/Draft
+        equipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/REquipment'
+      required:
+      - author
+      - cat
+      - slug
+      - title
+    CreateRecipeRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 255
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        photo:
+          type: string
+          format: binary
+          nullable: true
+        content:
+          type: string
+        instructions:
+          type: string
+        cat:
+          type: integer
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngredientRequest'
+        is_published:
+          allOf:
+          - $ref: '#/components/schemas/IsPublishedEnum'
+          title: Pub/Draft
+        equipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/REquipmentRequest'
+      required:
+      - cat
+      - slug
+      - title
+    CreateUserEquipment:
+      type: object
+      properties:
+        equipment:
+          type: integer
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        width:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Width (cm)
+        length:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Height (cm)
+        depth:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Depth(cm)
+      required:
+      - equipment
+    CreateUserEquipmentRequest:
+      type: object
+      properties:
+        equipment:
+          type: integer
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        width:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Width (cm)
+        length:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Height (cm)
+        depth:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Depth(cm)
+      required:
+      - equipment
+    CustomTokenObtainPairRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          writeOnly: true
+          minLength: 1
+        password:
+          type: string
+          writeOnly: true
+          minLength: 1
+      required:
+      - email
+      - password
+    Equipment:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        photo:
+          type: string
+          format: uri
+          nullable: true
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+        cat:
+          type: integer
+      required:
+      - cat
+      - id
+      - name
+      - slug
+    EquipmentRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        photo:
+          type: string
+          format: binary
+          nullable: true
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        description:
+          type: string
+        cat:
+          type: integer
+      required:
+      - cat
+      - name
+      - slug
+    FavoriteRecipe:
+      type: object
+      properties:
+        email:
+          type: string
+        slug:
+          type: string
+      required:
+      - email
+      - slug
+    FavoriteRecipeRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          minLength: 1
+        slug:
+          type: string
+          minLength: 1
+      required:
+      - email
+      - slug
+    GetCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+      required:
+      - id
+      - name
+      - slug
+    Ingredient:
+      type: object
+      properties:
+        base_ingredient_name:
+          type: string
+        user_ingredient_name:
+          type: string
+        quantity:
+          type: integer
+        unit:
+          type: string
+      required:
+      - quantity
+      - unit
+    IngredientRequest:
+      type: object
+      properties:
+        base_ingredient_name:
+          type: string
+        user_ingredient_name:
+          type: string
+        quantity:
+          type: integer
+        unit:
+          type: string
+          minLength: 1
+      required:
+      - quantity
+      - unit
+    IngredientSelection:
+      type: object
+      properties:
+        user:
+          type: integer
+        base_ingredient_name:
+          type: string
+        user_ingredient_name:
+          type: string
+        quantity:
+          type: integer
+        unit:
+          type: string
+      required:
+      - quantity
+      - unit
+    IngredientSelectionRequest:
+      type: object
+      properties:
+        user:
+          type: integer
+        base_ingredient_name:
+          type: string
+        user_ingredient_name:
+          type: string
+        quantity:
+          type: integer
+        unit:
+          type: string
+          minLength: 1
+      required:
+      - quantity
+      - unit
+    IsPublishedEnum:
+      enum:
+      - false
+      - true
+      type: boolean
+      description: |-
+        * `False` - DRAFT
+        * `True` - Published
+    Logout:
+      type: object
+      properties:
+        refresh:
+          type: string
+      required:
+      - refresh
+    LogoutRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+          minLength: 1
+      required:
+      - refresh
+    MealGroup:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        cat:
+          type: integer
+          title: Category
+        recipes:
+          type: array
+          items:
+            type: integer
+      required:
+      - cat
+      - id
+      - name
+      - recipes
+    MealGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        cat:
+          type: integer
+          title: Category
+        recipes:
+          type: array
+          items:
+            type: integer
+      required:
+      - cat
+      - name
+      - recipes
+    Menu:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Menu name
+          maxLength: 255
+        meal_groups:
+          type: array
+          items:
+            type: integer
+      required:
+      - id
+      - meal_groups
+      - name
+    MenuRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          title: Menu name
+          maxLength: 255
+        meal_groups:
+          type: array
+          items:
+            type: integer
+      required:
+      - meal_groups
+      - name
+    PaginatedCreateRecipeList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateRecipe'
+    PatchedBaseIngredientRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type: string
+        photo:
+          type: string
+          format: binary
+          nullable: true
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        cat:
+          type: integer
+    PatchedCategoryRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+    PatchedCommentRequest:
+      type: object
+      properties:
+        author:
+          type: integer
+        recipe:
+          type: integer
+        rate:
+          allOf:
+          - $ref: '#/components/schemas/RateEnum'
+          minimum: -2147483648
+          maximum: 2147483647
+        title:
+          type: string
+          maxLength: 80
+        body:
+          type: string
+        photo:
+          type: string
+          format: binary
+    PatchedCreateRecipeRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 255
+        slug:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        photo:
+          type: string
+          format: binary
+          nullable: true
+        content:
+          type: string
+        instructions:
+          type: string
+        cat:
+          type: integer
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngredientRequest'
+        is_published:
+          allOf:
+          - $ref: '#/components/schemas/IsPublishedEnum'
+          title: Pub/Draft
+        equipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/REquipmentRequest'
+    PatchedCreateUserEquipmentRequest:
+      type: object
+      properties:
+        equipment:
+          type: integer
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        width:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Width (cm)
+        length:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Height (cm)
+        depth:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Depth(cm)
+    PatchedIngredientSelectionRequest:
+      type: object
+      properties:
+        user:
+          type: integer
+        base_ingredient_name:
+          type: string
+        user_ingredient_name:
+          type: string
+        quantity:
+          type: integer
+        unit:
+          type: string
+          minLength: 1
+    PatchedMealGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        cat:
+          type: integer
+          title: Category
+        recipes:
+          type: array
+          items:
+            type: integer
+    PatchedMenuRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          title: Menu name
+          maxLength: 255
+        meal_groups:
+          type: array
+          items:
+            type: integer
+    PatchedRecipeEquipmentRequest:
+      type: object
+      properties:
+        recipe:
+          type: integer
+        equipment_name:
+          type: string
+        quantity:
+          type: integer
+    PatchedRecipeIngredientRequest:
+      type: object
+      properties:
+        recipe:
+          type: integer
+        base_ingredient_name:
+          type: string
+        user_ingredient_name:
+          type: string
+        quantity:
+          type: integer
+        unit:
+          type: string
+          minLength: 1
+    PatchedUserIngredientRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type: string
+        user:
+          type: integer
+    PatchedUserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 1
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          minLength: 1
+          maxLength: 254
+        photo:
+          type: string
+          format: binary
+        last_name:
+          type: string
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        date_birth:
+          type: string
+          format: date-time
+          nullable: true
+          title: Birthday
+    REquipment:
+      type: object
+      properties:
+        equipment_name:
+          type: string
+        quantity:
+          type: integer
+      required:
+      - equipment_name
+      - quantity
+    REquipmentRequest:
+      type: object
+      properties:
+        equipment_name:
+          type: string
+          minLength: 1
+        quantity:
+          type: integer
+      required:
+      - equipment_name
+      - quantity
+    RateEnum:
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      type: integer
+      description: |-
+        * `1` - 1
+        * `2` - 2
+        * `3` - 3
+        * `4` - 4
+        * `5` - 5
+    Recipe:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        rate:
+          type: string
+          readOnly: true
+        comments:
+          type: string
+          readOnly: true
+        is_favorite:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        photo:
+          type: string
+          format: uri
+          nullable: true
+        content:
+          type: string
+        time_create:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Created
+        time_update:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Updated
+        is_published:
+          allOf:
+          - $ref: '#/components/schemas/IsPublishedEnum'
+          title: Pub/Draft
+        instructions:
+          type: string
+        cat:
+          type: integer
+        author:
+          type: integer
+          nullable: true
+        base_ingredients:
+          type: array
+          items:
+            type: integer
+          readOnly: true
+        user_ingredients:
+          type: array
+          items:
+            type: integer
+          readOnly: true
+        equipment:
+          type: array
+          items:
+            type: integer
+          readOnly: true
+      required:
+      - base_ingredients
+      - cat
+      - comments
+      - equipment
+      - id
+      - is_favorite
+      - rate
+      - slug
+      - time_create
+      - time_update
+      - title
+      - user_ingredients
+    RecipeEquipment:
+      type: object
+      properties:
+        recipe:
+          type: integer
+        equipment_name:
+          type: string
+        quantity:
+          type: integer
+      required:
+      - quantity
+      - recipe
+    RecipeEquipmentRequest:
+      type: object
+      properties:
+        recipe:
+          type: integer
+        equipment_name:
+          type: string
+        quantity:
+          type: integer
+      required:
+      - quantity
+      - recipe
+    RecipeIngredient:
+      type: object
+      properties:
+        recipe:
+          type: integer
+        base_ingredient_name:
+          type: string
+        user_ingredient_name:
+          type: string
+        quantity:
+          type: integer
+        unit:
+          type: string
+      required:
+      - quantity
+      - recipe
+      - unit
+    RecipeIngredientRequest:
+      type: object
+      properties:
+        recipe:
+          type: integer
+        base_ingredient_name:
+          type: string
+        user_ingredient_name:
+          type: string
+        quantity:
+          type: integer
+        unit:
+          type: string
+          minLength: 1
+      required:
+      - quantity
+      - recipe
+      - unit
+    Register:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+        photo:
+          type: string
+          format: uri
+      required:
+      - email
+      - username
+    RegisterRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 1
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          writeOnly: true
+          minLength: 1
+        password2:
+          type: string
+          writeOnly: true
+          minLength: 1
+        photo:
+          type: string
+          format: binary
+      required:
+      - email
+      - password
+      - password2
+      - username
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    TokenRefreshRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+          minLength: 1
+      required:
+      - refresh
+    TokenVerifyRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          writeOnly: true
+          minLength: 1
+      required:
+      - token
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        photo:
+          type: string
+          format: uri
+        last_name:
+          type: string
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        date_birth:
+          type: string
+          format: date-time
+          nullable: true
+          title: Birthday
+      required:
+      - email
+      - id
+      - username
+    UserEquipment:
+      type: object
+      properties:
+        equipment:
+          type: string
+        user:
+          type: string
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        depth:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Depth(cm)
+        width:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Width (cm)
+        length:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,7}(?:\.\d{0,3})?$
+          nullable: true
+          title: Height (cm)
+      required:
+      - equipment
+      - user
+    UserIngredient:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        user:
+          type: integer
+      required:
+      - id
+      - name
+      - user
+    UserIngredientRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type: string
+        user:
+          type: integer
+      required:
+      - name
+      - user
+    UserRecipes:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        cat:
+          type: integer
+      required:
+      - cat
+      - id
+      - title
+    UserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 1
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          minLength: 1
+          maxLength: 254
+        photo:
+          type: string
+          format: binary
+        last_name:
+          type: string
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        date_birth:
+          type: string
+          format: date-time
+          nullable: true
+          title: Birthday
+      required:
+      - email
+      - username
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
