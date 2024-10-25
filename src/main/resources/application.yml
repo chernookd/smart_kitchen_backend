@@ -1,0 +1,57 @@
+spring:
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.xml
+  docker:
+    compose:
+      enabled: false
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/smart_kitchen
+    password: 'postgres'
+    username: 'postgres'
+  jpa:
+    hibernate:
+      #ddl-auto: update
+    show-sql: true
+    #properties:
+      #hibernate:
+        #format_sql: true
+        #dialect: org.hibernate.dialect.MySQL8Dialect
+
+
+security:
+
+  secretKey: chernooki2004
+  tokenLifetime: 36000s
+  usernameClaimName: username
+  authoritiesClaimName: authorities
+  email-claim-name: email
+  permit-all-requests:
+    - "/auth/**"
+    - "/swagger-ui/**"
+    - "/swagger-ui.html"
+    - "/v3/api-docs/**"
+    - "/v2/api-docs/**"
+  security-url-pattern: "/**"
+
+
+
+
+
+
+
+server:
+  port: 8080
+
+
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+
+
+
+
+
