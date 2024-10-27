@@ -50,6 +50,10 @@ public class WebSecurityConfig {
                 .securityMatcher(pattern)
                 .authorizeHttpRequests(registry -> {
                             permitAllRequests.forEach(request -> registry.requestMatchers(request).permitAll());
+                            registry
+                                    .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-resources/**", "/webjars/**")
+                                    .permitAll();
+
                             registry.anyRequest().authenticated();
                         }
                 );

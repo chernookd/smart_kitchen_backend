@@ -1,4 +1,5 @@
 spring:
+
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/master.xml
@@ -8,7 +9,7 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/smart_kitchen
-    password: 'postgres'
+    password: 'password'
     username: 'postgres'
   jpa:
     hibernate:
@@ -33,23 +34,24 @@ security:
     - "/swagger-ui.html"
     - "/v3/api-docs/**"
     - "/v2/api-docs/**"
+    - "/swagger-resources/**"
+    - "/webjars/**"
   security-url-pattern: "/**"
-
-
-
-
-
 
 
 server:
   port: 8080
 
 
-
-
 springdoc:
   swagger-ui:
-    path: /swagger-ui
+    syntaxHighlight:
+      activated: false
+      theme: null
+    urls-primary-name: USER_API
+    path: /swagger-ui.html
+  api-docs:
+    enabled: true
 
 
 
